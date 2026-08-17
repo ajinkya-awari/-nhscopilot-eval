@@ -79,7 +79,10 @@ class SourceManifest(BaseModel):
     @field_validator("content_hash")
     @classmethod
     def validate_content_hash(cls, value: str) -> str:
-        if value == "not_applicable_no_rows_authored":
+        if value in {
+            "not_applicable_no_rows_authored",
+            "local_generated_artifact_not_released",
+        }:
             return value
         return _hash_field(value)
 
@@ -263,10 +266,12 @@ class AggregateResult(BaseModel):
     model_config = STRICT_MODEL
 
     model_id: str = Field(min_length=1)
+    model_version: str | None = None
     category: Category
     status: Literal["available", "not_run"]
     metrics: dict[str, float] = Field(default_factory=dict)
     uncertainty: dict[str, float] = Field(default_factory=dict)
+    source_links: list[HttpUrl] = Field(default_factory=list)
 
 
 class PublicBundle(BaseModel):
@@ -278,6 +283,7 @@ class PublicBundle(BaseModel):
     development_rows: list[PublicDevelopmentRow] = Field(default_factory=list)
     aggregates: list[AggregateResult] = Field(default_factory=list)
     manifest_ids: list[str] = Field(default_factory=list)
+    source_links: list[HttpUrl] = Field(default_factory=list)
     disclaimer: str = Field(min_length=1)
 
     @field_validator("disclaimer")

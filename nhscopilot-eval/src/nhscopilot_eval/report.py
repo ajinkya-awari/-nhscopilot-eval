@@ -31,6 +31,7 @@ def build_public_bundle(
         ],
         aggregates=aggregates,
         manifest_ids=["project09-source-manifest-scaffold"],
+        source_links=[],
         disclaimer=DISCLAIMER,
     )
 

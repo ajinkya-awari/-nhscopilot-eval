@@ -38,7 +38,7 @@ the hidden split is frozen.
 - [ ] Record URL, revision date, document hash, section anchor, licence, geography, and AI-permission status
 - [ ] Exclude BNF unless written permission covers AI use and public distribution; otherwise select MHRA/public sources
 - [ ] Freeze a UK ICD-10 edition/licence decision; do not copy code tables into public data
-- [ ] Write a fallback decision for a fully synthetic/licence-cleared benchmark if any rights gate fails
+- [x] Write and record the fully synthetic fallback decision; local generated rows remain unreleased until review
 
 ### 43.2 Contracts and schemas
 
@@ -50,9 +50,9 @@ the hidden split is frozen.
 
 ### 43.3 Authoring and review
 
-- [ ] Author exactly 100 guidance, 50 synthetic ICD-10, and 50 medication-safety rows
-- [ ] Use safe/unsafe/review/insufficient-information medication labels and severity classes
-- [ ] Attach source/version/anchor/rubric metadata to every row
+- [x] Generate exactly 100 guidance, 50 synthetic ICD-10, and 50 medication-safety rows locally
+- [x] Use safe/unsafe/review/insufficient-information medication labels and severity classes
+- [x] Attach source/version/anchor/rubric metadata to every generated row
 - [ ] Perform two independent reviews for ambiguous/high-severity rows and record adjudications
 - [ ] Freeze public development metadata and private locked prompts/labels with hashes
 
@@ -79,7 +79,7 @@ model metadata, missing budget, or a non-sealed evaluation split.
 
 - [x] Write adapter tests using local fixtures; no credentials required
 - [x] Implement local fixture adapter and exact model-registry policy validation
-- [ ] Implement optional OpenAI/Anthropic/Hugging Face adapters behind explicit allow-remote and cost ceiling
+- [x] Implement an SDK-neutral optional remote adapter behind explicit allow-remote and cost ceiling; provider SDK calls remain disabled
 - [x] Add not_run semantics, request hashes, parameter capture, and redacted logging boundaries
 - [ ] Test Retry-After, capped backoff, bounded jitter, timeout, rate limit, malformed response, and provider error
 
@@ -113,13 +113,13 @@ or secret scan fails.
 - [x] Implement export of only permitted synthetic/licence-cleared development projections and aggregate results
 - [ ] Keep hidden test prompts/labels, raw provider outputs, source passages, and adjudication ledger private
 - [x] Generate bundle code, dataset card, limitations, attribution, research-only disclaimer, and model availability policy
-- [ ] Scan public files for secrets, PHI, restricted text, answer-key leakage, and unsupported claims
+- [x] Scan the generated public projection for secrets, PHI, restricted text, answer-key leakage, and unsupported claims
 
 ### 45.2 Leaderboard
 
 - [x] Build aggregate-only Gradio/static app with no provider keys, uploads, or live clinical inference
-- [ ] Display category scores, uncertainty, failures, abstentions, not_run rows, versions, and source links
-- [ ] Add visible “not clinical advice” and “does not establish safety/regulatory compliance” notices
+- [x] Display category scores, uncertainty, failures, abstentions, not_run rows, versions, and rights-cleared source links when available
+- [x] Add visible “not clinical advice” and “does not establish safety/regulatory compliance” notices
 - [ ] Run network-disabled smoke test in Kaggle/Colab or approved environment; local Python execution remains disabled
 
 ### 45.3 Final review

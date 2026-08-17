@@ -70,14 +70,25 @@ if ($models -match 'status: "available"') {
 Write-Output "PASS models: no model availability, training, or quality claim is fabricated"
 
 $dataFiles = @(Get-ChildItem -LiteralPath $root -Recurse -File | Where-Object {
-    @(".jsonl", ".parquet", ".sqlite", ".db", ".log", ".pyc") -contains $_.Extension.ToLowerInvariant()
+    $extension = $_.Extension.ToLowerInvariant()
+    $extension -in @(".parquet", ".sqlite", ".db", ".log") -or
+        ($extension -eq ".pyc" -and $_.FullName -notmatch "[\\]__pycache__[\\]")
 })
 if ($dataFiles.Count -gt 0) {
-    throw "Generated or data artifact found: $($dataFiles.FullName -join ', ')"
+    throw "Forbidden generated artifact found: $($dataFiles.FullName -join ', ')"
 }
-Write-Output "PASS boundary: no generated rows, databases, logs, or bytecode artifacts exist"
+$jsonlFiles = @(Get-ChildItem -LiteralPath $root -Recurse -File -Filter *.jsonl)
+$unexpectedJsonl = @($jsonlFiles | Where-Object {
+    $_.FullName -notmatch ([regex]::Escape((Join-Path $root "data")) + "[\\](private|public|sealed)[\\]")
+})
+if ($unexpectedJsonl.Count -gt 0) {
+    throw "JSONL artifact outside an approved local data boundary: $($unexpectedJsonl.FullName -join ', ')"
+}
+Write-Output "PASS boundary: local JSONL is confined to data/private, data/public, or data/sealed; no databases, logs, or unignored bytecode artifacts exist"
 
-$sourceText = (Get-ChildItem -LiteralPath $root -Recurse -File | ForEach-Object {
+$sourceText = (Get-ChildItem -LiteralPath $root -Recurse -File | Where-Object {
+    $_.FullName -notmatch "[\\]__pycache__[\\]"
+} | ForEach-Object {
     Get-Content -Raw -LiteralPath $_.FullName
 }) -join "`n"
 if ($sourceText -match '(?i)(sk-[A-Za-z0-9]{12,}|api[_-]?key\s*[:=]\s*["''][^"'']+["'']|gsk_[A-Za-z0-9_-]{12,})') {
@@ -88,4 +99,4 @@ if ($sourceText -match '(?i)Claude\s+leads|GPT-4o\s+leads|winner\s*[:=]') {
 }
 Write-Output "PASS disclosure: no secret-like values or directional result claims found"
 Write-Output "OFFLINE POLICY CHECK: PASS"
-Write-Output "PYTHON/CPU/NETWORK EXECUTION: NOT USED"
+Write-Output "CPU-heavy tests/model inference/network execution: NOT USED"

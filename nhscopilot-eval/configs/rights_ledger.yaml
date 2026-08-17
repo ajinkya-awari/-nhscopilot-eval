@@ -15,9 +15,9 @@ entries:
     version: "scaffold-2026-08-18"
     licence_decision: "local_authorship_only"
     ai_reuse_decision: "permitted_for_local_synthetic_development"
-    content_hash: "not_applicable_no_rows_authored"
+    content_hash: "local_generated_artifact_not_released"
     citation_anchor: "none"
-    permitted_scope: "local synthetic contract and fixture development"
+    permitted_scope: "local synthetic contract, fixture, and generated-row review only"
     public_release: "blocked_until_disclosure_review"
 
   - source_id: "nice-candidate-set"

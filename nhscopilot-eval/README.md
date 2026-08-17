@@ -10,10 +10,15 @@ The local implementation now contains:
 - public/private/sealed split and public projection boundaries;
 - strict Pydantic contracts, redaction, replay, adjudication, scoring, and analysis modules;
 - a local fixture provider and explicit unavailable-model semantics;
+- an SDK-neutral guarded remote adapter that remains `not_run` until explicit opt-in and budget metadata;
 - aggregate-only reporting and a frozen catalogue app; and
 - public/private/sealed directory boundaries; and
 - an execution policy that keeps local work offline and defers GPU-dependent model work to an
   explicitly approved Kaggle or Google Colab notebook.
+
+The lightweight local workflow may generate the 200 synthetic rows and scan the public projection.
+Generated private/sealed JSONL remains ignored and is never a release artifact. Use
+`scripts/check_disclosure.ps1` before any user-reviewed bundle is considered for publication.
 
 No clinical advice, NHS/NICE/MHRA/WHO endorsement, safety claim, deployment claim, provider call,
 restricted source text, patient data, hidden labels, or benchmark metric is claimed here.

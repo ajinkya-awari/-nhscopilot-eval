@@ -18,16 +18,37 @@ def catalogue_rows(bundle: PublicBundle) -> list[dict[str, Any]]:
             "model": aggregate.model_id,
             "category": aggregate.category,
             "status": aggregate.status,
+            "model_version": aggregate.model_version,
+            "source_links": [str(link) for link in aggregate.source_links],
             **aggregate.metrics,
+            "uncertainty": aggregate.uncertainty,
         }
         for aggregate in bundle.aggregates
     ]
 
 
+def catalogue_metadata(bundle: PublicBundle) -> dict[str, Any]:
+    """Expose release metadata without exposing prompts, labels, or raw outputs."""
+
+    return {
+        "bundle_id": bundle.bundle_id,
+        "schema_version": bundle.schema_version,
+        "generated_at": bundle.generated_at,
+        "manifest_ids": bundle.manifest_ids,
+        "source_links": [str(link) for link in bundle.source_links],
+        "source_link_policy": "only rights-cleared links may be populated",
+        "disclaimer": bundle.disclaimer,
+    }
+
+
 def export_static_catalogue(bundle: PublicBundle, path: Path) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     rows = catalogue_rows(bundle)
-    body = json.dumps(rows, indent=2, sort_keys=True)
+    body = json.dumps(
+        {"metadata": catalogue_metadata(bundle), "aggregates": rows},
+        indent=2,
+        sort_keys=True,
+    )
     html = (
         "<!doctype html><meta charset='utf-8'>"
         "<title>NHSCopilot-Eval aggregate catalogue</title>"
@@ -47,5 +68,6 @@ def build_gradio_app(bundle: PublicBundle):
             "# NHSCopilot-Eval aggregate catalogue\n"
             "Research evaluation only; not clinical advice; no live inference."
         )
+        gr.JSON(value=catalogue_metadata(bundle), label="Release metadata")
         gr.JSON(value=catalogue_rows(bundle), label="Frozen aggregate results")
     return demo

@@ -9,11 +9,15 @@ current_session:
   package_installation: "disabled"
   provider_calls: "disabled"
   network_access: "disabled"
+  lightweight_local_generation: "allowed"
   allowed_checks:
     - "file_existence"
     - "json_parse"
     - "static_boundary_scan"
     - "forbidden_content_scan"
+    - "deterministic_synthetic_row_generation"
+    - "generated_artifact_count_scan"
+    - "public_surface_disclosure_scan"
 
 remote_gpu_notebook:
   status: "deferred"

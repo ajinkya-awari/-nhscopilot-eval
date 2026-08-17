@@ -1,6 +1,6 @@
 schema_version: "0.1"
 benchmark_id: "nhscopilot-eval-project09"
-status: "scaffold_only"
+status: "synthetic_rows_generated_pending_review"
 
 # Targets are design constraints, not evidence that rows exist.
 target_rows:
@@ -8,7 +8,13 @@ target_rows:
   guidance: 100
   icd10_synthetic: 50
   medication_safety: 50
-current_rows: 0
+current_rows: 200
+
+generation_policy:
+  deterministic: true
+  local_only: true
+  source_controlled_rows: false
+  generated_artifact_review_required: true
 
 split_policy:
   names:
