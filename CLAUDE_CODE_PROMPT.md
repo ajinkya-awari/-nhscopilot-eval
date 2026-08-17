@@ -1,6 +1,10 @@
 # CLAUDE_CODE_PROMPT.md — Future NHSCopilot-Eval Session
 
-> **PROJECT 09 LOCAL AUTHORIZATION - 2026-08-17:** Local documentation, source preparation, tests, dependencies, and synthetic evidence are authorized. Rights-sensitive source access, provider calls, evaluation against remote models, deployment, publication, outreach, and Git push remain explicit stop gates.
+> **PROJECT 09 LOCAL AUTHORIZATION - 2026-08-17:** Local documentation, source preparation, tests, dependencies, and synthetic evidence are authorized. Rights-sensitive source access, provider calls, evaluation against remote models, deployment, publication, and outreach remain explicit stop gates. The repository push was separately user-authorized; benchmark release remains gated.
+
+The GitHub repository push was separately authorized by the user and completed at commit `0952d75`.
+Benchmark publication, model/provider execution, deployment, outreach, and rights-sensitive access
+remain gated.
 
 > **EXTERNAL ACTIONS REMAIN GATED.** Local Project 09 work may proceed, but rights-sensitive
 > data access, remote provider calls, publication, deployment, and outreach require separate approval.
@@ -9,6 +13,13 @@ You are implementing only Project 09, a research evaluation harness. Read in ord
 FINAL_VULNERABILITY_SCAN.md, DESIGN.md, CLAUDE.md, tasks/lessons.md, tasks/todo.md. Never use
 PROJECT_BRIEF.md as an implementation specification. Do not train models or build RAG; Projects
 08, 10, 11, and 19 own those scopes.
+
+## Current implementation state — 2026-08-18
+
+The local source boundary and synthetic harness are authored, and a lightweight run generated the
+200-row synthetic artifact. Static/offline/disclosure checks passed. The next required evidence is
+the contract pytest run in Kaggle/Colab; local CPU-heavy tests, model downloads, provider calls,
+and model execution remain prohibited. See `STATUS.md` before choosing work.
 
 ## Mission and non-negotiable boundaries
 

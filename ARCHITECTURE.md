@@ -11,3 +11,9 @@
 | App | Display frozen aggregates and disclaimers | No live clinical inference |
 
 The provider layer may depend on contracts and redaction utilities. The public app consumes frozen aggregates only. Tests default to synthetic fixtures and offline mode.
+
+## Current implementation boundary
+
+The source tree under `nhscopilot-eval/` implements the listed components. The deterministic
+generator has produced ignored local synthetic JSONL; no model results or public benchmark bundle
+has been released. CPU-bound verification remains a Kaggle/Colab task. See `STATUS.md`.

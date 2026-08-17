@@ -1,5 +1,8 @@
 # DECISIONS — NHSCopilot-Eval
 
+Current state and next action: [`STATUS.md`](STATUS.md). This file records rationale and historical
+decisions; it is not a substitute for fresh evidence.
+
 ## D-001: Codex and Claude bootstrap files
 
 Use root `AGENTS.md` for Codex discovery and `CLAUDE.md` for Claude Code. Both reference the same authority chain and living records.
@@ -28,3 +31,16 @@ Keep a synthetic-only rights ledger and a model registry with exact-snapshot and
 before row authoring or provider execution. Unverified models remain pending or `not_run`; Project
 09 does not train models. A later GPU notebook may evaluate an explicitly selected model, subject to
 synthetic-input, rights, cost, and disclosure gates.
+
+## D-007: Lightweight local generation boundary
+
+The deterministic synthetic generator may run locally because it is small, offline, and does not
+download packages, models, or source content. Its private/sealed JSONL outputs remain ignored and
+unreleased. CPU-bound pytest, model inference, training, provider calls, and network smoke tests
+remain delegated to Kaggle/Colab or an explicitly approved environment.
+
+## D-008: Repository publication versus benchmark release
+
+The user explicitly authorized pushing the source repository to GitHub; `0952d75` is the current
+remote tip. This does not authorize benchmark publication, provider execution, deployment, outreach,
+rights-sensitive access, clinical claims, or regulatory claims.

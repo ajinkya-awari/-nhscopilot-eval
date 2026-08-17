@@ -9,10 +9,12 @@ user-invocable: true
 3. Record sources, licences, versions, hashes, and split impact before authoring data.
 4. Use synthetic fixtures and offline mode before any provider call.
 5. Validate strict contracts and public/private/sealed disjointness.
-6. Run local baseline first; represent unavailable providers as `not_run`.
+6. Run the local baseline first only in an approved execution environment; represent unavailable
+   providers as `not_run`.
 7. Keep refusal, abstention, malformed, timeout, provider error, and insufficient-information outcomes separate.
 8. Compute category metrics and paired uncertainty on locked rows only.
 9. Run secret, PHI, restricted-content, replay, and disclosure scans.
-10. Stop at rights-sensitive access, provider calls, deployment, publication, email, and Git push gates.
+10. Stop at rights-sensitive access, provider calls, deployment, publication, and email gates. A
+    Git push requires explicit user authorization and must be recorded in `STATUS.md`.
 
 Ask the user before external actions or changes to rights, hidden labels, public claims, or model registry semantics. Infer routine local validation from the project files.

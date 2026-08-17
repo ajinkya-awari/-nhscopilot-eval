@@ -1,5 +1,8 @@
 # Lightweight local generation evidence — 2026-08-18
 
+Current local evidence for the generated synthetic artifact. This does not replace the pending
+Kaggle/Colab pytest evidence.
+
 ## Scope
 
 This evidence covers only deterministic synthetic-row generation and public-surface disclosure

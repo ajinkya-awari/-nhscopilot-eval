@@ -1,5 +1,9 @@
 # ROLLBACK — NHSCopilot-Eval
 
+For the current state and the exact next gate, read `STATUS.md` before rollback work. The GitHub
+repository is user-authorized and current at commit `0952d75`; benchmark publication and deployment
+remain blocked.
+
 ## Documentation Rollback
 
 1. Inspect the scoped Project 09 diff.

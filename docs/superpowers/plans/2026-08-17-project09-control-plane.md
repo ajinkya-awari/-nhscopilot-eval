@@ -8,12 +8,21 @@
 
 **Tech Stack:** Markdown, YAML frontmatter, JSON settings, POSIX shell hooks, Python project commands.
 
+## Current state — 2026-08-18
+
+Tasks 1–11 are locally authored. The deterministic generator produced the 200-row synthetic
+development artifact, static/disclosure checks pass, and the source repository was pushed with
+explicit user authorization. The next gate is Kaggle/Colab contract-test evidence, followed by
+dual review/adjudication. See root `STATUS.md` for the authoritative handoff.
+
 ## Global Constraints
 
 - Use only Project 09 terminology and contracts.
 - Treat `PROJECT_BRIEF.md` as superseded; never use its example metrics as results.
 - Keep BNF, WHO/NHS code tables, PHI, patient records, raw provider responses, keys, and hidden labels out of public artifacts.
-- Do not call providers, fetch rights-sensitive sources, deploy, publish, email, or push Git. Keep the source repository strictly inside the separate local nhscopilot-eval/ boundary.
+- Do not call providers, fetch rights-sensitive sources, deploy, publish, or email. The source
+  repository is separate; GitHub push was explicitly authorized for this session and does not imply
+  benchmark publication approval.
 - Do not auto-commit.
 
 ## Execution Policy for This Session
@@ -22,7 +31,8 @@
 - Do not run `pytest`, `compileall`, package installation, model downloads, provider calls, or local model training/inference.
 - Applicable verification is limited to lightweight PowerShell file, JSON/YAML-text, boundary, and forbidden-content checks.
 - Any GPU-dependent baseline or training workflow must be a later notebook artifact for Kaggle or Google Colab, with explicit user opt-in, synthetic inputs, and no restricted-source access.
-- The first implementation milestone must not author benchmark rows or claim metrics.
+- The first implementation milestone was a no-row scaffold; the current lightweight milestone may
+  generate synthetic rows locally but must not claim metrics.
 
 ## Current Implementation Slice
 
@@ -31,36 +41,36 @@ The control-plane documents already exist. The first verified local milestone is
 ### Task 1: Bootstrap and authority records
 
 - [x] Create `AGENTS.md` and tailored `CLAUDE.md`.
-- [ ] Create the design record and collaboration index.
-- [ ] Confirm the authority chain and authorization boundaries.
+- [x] Create the design record and collaboration index.
+- [x] Confirm the authority chain and authorization boundaries.
 
 ### Task 2: NHS evaluation control plane
 
-- [ ] Create six project-specific agents.
-- [ ] Create three provenance/evaluation/security commands or commands adapted to this project.
-- [ ] Create safe hooks, path-aware rules, workflow skill, and settings.
+- [x] Create six project-specific agents.
+- [x] Create three provenance/evaluation/security commands or commands adapted to this project.
+- [x] Create safe hooks, path-aware rules, workflow skill, and settings.
 
 ### Task 3: Project 09 prompt pack
 
-- [ ] Create all 15 prompts with NHS evaluation-specific inputs, outputs, tests, licensing, and stop gates.
-- [ ] Scan every prompt for contamination from unrelated projects.
+- [x] Create all 15 prompts with NHS evaluation-specific inputs, outputs, tests, licensing, and stop gates.
+- [x] Scan every prompt for contamination from unrelated projects.
 
 ### Task 4: Field-guide records
 
-- [ ] Create handover, decisions, architecture, constraints, flow, test, rollback, feature, and bug records.
-- [ ] Add the first authorization and superseded-brief decisions.
+- [x] Create handover, decisions, architecture, constraints, flow, test, rollback, feature, and bug records.
+- [x] Add the first authorization and superseded-brief decisions.
 
 ### Task 5: Existing-plan consistency
 
-- [ ] Replace contradictory portfolio-freeze banners with dated local authorization plus external stop gates.
-- [ ] Preserve historical freeze context in `DECISIONS.md`.
+- [x] Replace active contradictory portfolio-freeze guidance with dated local authorization plus external stop gates.
+- [x] Preserve historical freeze context in `DECISIONS.md`.
 
 ### Task 6: Verification
 
-- [ ] Enumerate expected files and check non-empty content.
-- [ ] Parse JSON and validate frontmatter.
-- [ ] Search for unrelated project terms, fabricated example scores, stale freeze text, and secrets.
-- [ ] Read the full scoped diff and update `HANDOVER.md`.
+- [x] Enumerate expected files and check non-empty content.
+- [x] Parse JSON and validate frontmatter.
+- [x] Search for unrelated project terms, fabricated example scores, stale freeze text, and secrets.
+- [x] Read the full scoped diff and update `HANDOVER.md`.
 
 ### Task 7: Milestone 1 — Projectlocal provenance and execution scaffold
 
@@ -116,10 +126,10 @@ Milestone state:
 ### Task 9: GPU notebook boundary and evaluation runtime
 
 **Files:**
-- Create later: `nhscopilot-eval/notebooks/gpu_baseline.ipynb`
-- Create later: `nhscopilot-eval/src/nhscopilot_eval/providers.py`
-- Create later: `nhscopilot-eval/src/nhscopilot_eval/scoring.py`
-- Create later: `nhscopilot-eval/src/nhscopilot_eval/analysis.py`
+- Pending later: `nhscopilot-eval/notebooks/gpu_baseline.ipynb`
+- Created: `nhscopilot-eval/src/nhscopilot_eval/providers.py`
+- Created: `nhscopilot-eval/src/nhscopilot_eval/scoring.py`
+- Created: `nhscopilot-eval/src/nhscopilot_eval/analysis.py`
 
 The notebook is an exportable, synthetic-input-only workflow for Kaggle or Google Colab. It must not download restricted sources, expose hidden labels, persist raw provider output, or silently substitute unavailable models. Local execution remains limited to lightweight structural checks unless the user changes the explicit CPU restriction.
 

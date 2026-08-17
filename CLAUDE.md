@@ -1,5 +1,8 @@
 # CLAUDE.md — NHSCopilot-Eval (Project 09)
 
+**Current status:** Read `STATUS.md` first. The local harness and synthetic artifact are authored;
+the next gate is the Kaggle/Colab contract-test run. Do not infer test passage from static checks.
+
 ## Project Summary
 
 NHSCopilot-Eval is a provenance-aware, study-first benchmark for NHS-oriented language-model behavior across guidance comprehension, synthetic UK ICD-10 classification, and medication-safety escalation. It evaluates 200 controlled rows with a local baseline, optional provider adapters, abstention/error categories, paired uncertainty, and disclosure-reviewed aggregate outputs.
@@ -19,19 +22,18 @@ Read in this order before implementation:
 
 ## Authorization
 
-User authorization for Project 09 local control-plane work and implementation preparation was recorded on 2026-08-17. Local source creation, dependency work, tests, and synthetic evidence are allowed. Provider calls, restricted/licence-sensitive source access, deployment, publication, email, and Git push remain explicit stop gates.
+User authorization for Project 09 local control-plane work and implementation preparation was recorded on 2026-08-17. Local source creation, lightweight generation, dependency documentation, authored tests, and synthetic evidence are allowed. Provider calls, restricted/licence-sensitive source access, deployment, benchmark publication, and outreach remain explicit stop gates. The repository push was explicitly authorized by the user and recorded in `STATUS.md`.
 
 ## Stack and Commands
 
-- Python 3.11; pinned design versions include Gradio 5.49.1, NumPy 2.2.6, pandas 2.2.3, Pydantic 2.11.7, scikit-learn 1.6.1, PyYAML 6.0.2, and pytest 8.3.5. Provider SDKs remain optional and rights-gated.
+- Python 3.12 is the project target per `pyproject.toml`; the installed local interpreter was used only for lightweight generation and is not a supported test result. Pinned design versions include Gradio 5.49.1, NumPy 2.2.6, pandas 2.2.3, Pydantic 2.11.7, scikit-learn 1.6.1, PyYAML 6.0.2, and pytest 8.3.5. Provider SDKs remain optional and rights-gated.
 - Run from the future `nhscopilot-eval/` source-repository root.
 - Install: `python -m pip install -r requirements.txt`.
-- Tests: `python -m pytest -q`.
-- Contract tests: `python -m pytest tests/test_contracts.py -q`.
+- Tests: run only in Kaggle/Colab using `python -m pytest -q`.
+- Contract tests: run only in Kaggle/Colab using `python -m pytest tests/test_contracts.py -q`.
 - Syntax check: `python -m compileall src scripts tests`.
-- Contract tests: `python -m pytest tests/test_contracts.py -q`.
-- Scoring tests: `python -m pytest tests/test_scoring.py -q`.
-- Safety/replay tests: `python -m pytest tests/test_redaction.py tests/test_split_and_replay.py -q`.
+- Scoring tests: `python -m pytest tests/test_providers_scoring.py -q` in Kaggle/Colab.
+- Safety/replay tests: `python -m pytest tests/test_governance_and_replay.py -q` in Kaggle/Colab.
 - Secret scan: `rg -n -i 'api[_-]?key|secret|token|sk-|gsk_' . --glob '!.env*'` followed by manual review without printing values.
 
 ## Architecture

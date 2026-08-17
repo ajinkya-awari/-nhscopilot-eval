@@ -1,8 +1,8 @@
 # DESIGN.md — NHSCopilot-Eval (Project 09)
 
-**Implementation window:** Days 43–45; local Project 09 implementation is authorized and no source repository exists yet.
+**Implementation window:** Days 43–45; local Project 09 implementation is authorized and the separate source repository is present.
 
-> **PROJECT 09 LOCAL AUTHORIZATION - 2026-08-17:** Local documentation, source preparation, tests, dependencies, and synthetic evidence are authorized. Rights-sensitive source access, provider calls, evaluation against remote models, deployment, publication, outreach, and Git push remain explicit stop gates.
+> **PROJECT 09 LOCAL AUTHORIZATION - 2026-08-17:** Local documentation, source preparation, tests, dependencies, and synthetic evidence are authorized. Rights-sensitive source access, provider calls, evaluation against remote models, deployment, publication, and outreach remain explicit stop gates. The repository push was separately user-authorized; benchmark release remains gated.
 
 > **External-action gate:** local source creation, tests, dependencies, and synthetic evaluation
 > are authorized. Do not access rights-sensitive sources, call paid/remote model APIs, publish a
@@ -11,6 +11,13 @@
 > **FINAL_VULNERABILITY_SCAN.md overrides this file where they conflict.**
 
 ## §0. Design Decisions
+
+## Current implementation status — 2026-08-18
+
+The separate `nhscopilot-eval/` source boundary now exists. The local synthetic harness and
+200-row development artifact are authored, and lightweight static/disclosure evidence passed. The
+next gate is the Kaggle/Colab contract-test run. Rights-sensitive sources, model evaluation, and
+benchmark release remain blocked. Use `STATUS.md` for the current state.
 
 ### Divergent exploration
 

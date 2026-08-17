@@ -1,5 +1,8 @@
 # Milestone 1 static-check evidence
 
+Historical milestone snapshot. The later lightweight generation evidence is the current local
+artifact record; this file remains the original no-row scaffold evidence.
+
 Date: 2026-08-18
 Scope: Projectlocal source-boundary scaffold only
 Mode: offline PowerShell static checks

@@ -2,6 +2,11 @@
 
 **Status:** Approved by user on 2026-08-17.
 
+**Implementation status:** The control plane and local source boundary are complete and pushed to
+GitHub with user authorization. The next open gate is Kaggle/Colab contract-test evidence; this
+spec does not authorize provider calls, rights-sensitive source access, benchmark publication, or
+deployment.
+
 ## Goal
 
 Create a self-contained Codex and Claude Code operating system for NHSCopilot-Eval that preserves provenance, licensing, privacy, hidden-test, safety, replay, and disclosure requirements across sessions.
@@ -14,7 +19,7 @@ The 15 prompt files retain the requested categories but are rewritten for proven
 
 ## Safety Boundaries
 
-Local synthetic work is authorized. Rights-sensitive source access, provider calls, remote execution, deployment, publication, outreach, and Git push remain separate approval gates. Hooks never upload, publish, contact providers, or read secret values.
+Local synthetic work is authorized. Rights-sensitive source access, provider calls, remote execution, deployment, publication, and outreach remain separate approval gates. The repository push was separately user-authorized; hooks never upload, publish, contact providers, or read secret values.
 
 ## Verification
 

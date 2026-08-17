@@ -3,6 +3,9 @@
 This directory is the separate local source boundary for Project 09. The parent directory remains
 the planning and control-plane folder.
 
+Read the parent [`STATUS.md`](../STATUS.md) before working here; it identifies the current gate,
+done evidence, and the exact next action.
+
 The local implementation now contains:
 
 - synthetic-authorship fallback provenance;
@@ -24,7 +27,8 @@ No clinical advice, NHS/NICE/MHRA/WHO endorsement, safety claim, deployment clai
 restricted source text, patient data, hidden labels, or benchmark metric is claimed here.
 
 The test suite is authored but must be run only in Kaggle or Google Colab per the project execution
-policy. Local PowerShell checks do not run Python, pytest, providers, models, or network calls.
+policy. Local PowerShell checks do not run pytest, providers, models, or network calls. The small
+deterministic generator is the only lightweight Python workflow currently evidenced locally.
 
 Project 09 is an evaluation harness. GPU notebooks may be used for explicitly selected model
 evaluation, but model training is out of scope.

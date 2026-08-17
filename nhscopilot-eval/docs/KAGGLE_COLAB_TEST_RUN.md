@@ -29,3 +29,9 @@ claim before the notebook produces fresh output.
 - Providers: disabled
 - GPU model execution: not part of this contract-test milestone
 - Rights-sensitive sources: not accessed
+
+## Next required evidence
+
+Run the contract command above in the notebook, save the complete output in a dated evidence file,
+and update `STATUS.md`, `HANDOVER.md`, and `tasks/todo.md`. Do not run the command locally and do
+not treat this runbook's expected scope as a passing result.

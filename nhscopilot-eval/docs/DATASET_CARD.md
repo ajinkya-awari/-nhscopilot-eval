@@ -2,14 +2,14 @@
 
 ## Status
 
-Local synthetic authoring scaffold. No public release, provider evaluation, clinical claim, or
-institutional endorsement is made by this file.
+Local synthetic artifact generated for development review. No public release, provider evaluation,
+clinical claim, or institutional endorsement is made by this file.
 
 ## Scope
 
-The planned benchmark contains 100 guidance-comprehension rows, 50 synthetic coding rows, and 50
-medication-safety communication rows. Public development metadata, private authoring data, and
-sealed evaluation labels remain separate.
+The generated local benchmark contains 100 guidance-comprehension rows, 50 synthetic coding rows,
+and 50 medication-safety communication rows. Public development metadata, private authoring data,
+and sealed evaluation labels remain separate and ignored where restricted.
 
 ## Provenance and rights
 
@@ -29,7 +29,7 @@ than a binary safety claim.
 
 The local fixture provider and scorers are implementation fixtures. CPU test execution is deferred
 to Kaggle or Google Colab. No model-quality metric is claimed until a locked run produces reviewed
-evidence.
+evidence. Current next task: run `tests/test_contracts.py` in the documented notebook environment.
 
 ## Limitations
 

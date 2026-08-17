@@ -4,7 +4,7 @@ This is the Codex project instruction contract. Codex reads `AGENTS.md` before w
 
 ## Session Start
 
-1. Read this file and `CLAUDE.md`.
+1. Read `STATUS.md`, then this file and `CLAUDE.md`.
 2. Read `HANDOVER.md`, `DECISIONS.md`, `ARCHITECTURE.md`, `CONSTRAINTS.md`, `FLOW.md`, and `tasks/lessons.md`.
 3. Read `DESIGN.md`, `FINAL_VULNERABILITY_SCAN.md`, and `CLAUDE_CODE_PROMPT.md` in that order.
 4. Read `tasks/todo.md` and identify the next unchecked rights, data, safety, or evaluation gate.
@@ -65,4 +65,7 @@ This is the Codex project instruction contract. Codex reads `AGENTS.md` before w
 
 ## Required New-Session Response
 
-Summarize the current gate, rights/data status, files to touch, verification commands, and external actions that remain closed. Wait for approval for non-trivial work.
+Summarize the current gate, rights/data status, files to touch, verification commands, and external
+actions that remain closed. Treat `STATUS.md` as the canonical starting point. User-authorized
+GitHub repository pushes are recorded in `STATUS.md`; benchmark publication, deployment, outreach,
+provider calls, and rights-sensitive access still require explicit approval.

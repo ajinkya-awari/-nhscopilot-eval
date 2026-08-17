@@ -4,12 +4,13 @@ This index adapts the shared AI Collaboration Field Guide to Project 09. It is a
 
 ## Read First
 
-1. `HANDOVER.md`
-2. `DECISIONS.md`
-3. `ARCHITECTURE.md`
-4. `CONSTRAINTS.md`
-5. `FLOW.md`
-6. `tasks/lessons.md`
+1. `STATUS.md`
+2. `HANDOVER.md`
+3. `DECISIONS.md`
+4. `ARCHITECTURE.md`
+5. `CONSTRAINTS.md`
+6. `FLOW.md`
+7. `tasks/lessons.md`
 
 ## Record During Work
 

@@ -20,3 +20,9 @@
 - Dual review plus adjudication for ambiguous/high-severity rows.
 - Local baseline before optional providers.
 - Replay, secret, PHI, and disclosure scans before any release.
+
+## Current gate
+
+The local synthetic artifact and static/disclosure evidence are complete. The next gate is the
+Kaggle/Colab contract-test run. See `STATUS.md`; do not run CPU-heavy tests or download models in
+the local workspace.

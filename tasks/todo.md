@@ -4,7 +4,24 @@
 **Implementation window:** Days 43–45; local Project 09 authorization is active and external gates remain closed  
 **Headline:** Versioned, risk-calibrated UK/NHS LLM evaluation—not a clinical leaderboard.
 
-> **PROJECT 09 LOCAL AUTHORIZATION - 2026-08-17:** Local documentation, source preparation, tests, dependencies, and synthetic evidence are authorized. Rights-sensitive source access, provider calls, evaluation against remote models, deployment, publication, outreach, and Git push remain explicit stop gates.
+## Current status — 2026-08-18
+
+Done: local harness authored; deterministic 200-row synthetic artifact generated; static offline and
+public-disclosure scans passed; guarded provider and aggregate catalogue code added; GitHub push
+completed with user authorization.
+
+Next: run `python -m pytest -q tests/test_contracts.py` in Kaggle/Colab only and attach complete
+output. Then complete dual review/adjudication, freeze manifests, select a model, and run only
+approved notebook evaluation. Do not run CPU-heavy tests, download models/packages, call providers,
+or access rights-sensitive sources locally.
+
+Canonical handoff: `STATUS.md`. Historical evidence files retain their original command scope and
+must not be mistaken for current pytest evidence.
+
+> **PROJECT 09 LOCAL AUTHORIZATION - 2026-08-17:** Local documentation, source preparation, tests, dependencies, and synthetic evidence are authorized. Rights-sensitive source access, provider calls, evaluation against remote models, deployment, publication, and outreach remain explicit stop gates. The repository push was separately user-authorized; benchmark release remains gated.
+
+The GitHub repository push was separately authorized by the user and completed at commit `0952d75`.
+The benchmark, model, rights, deployment, and outreach gates remain closed.
 
 ## Pre-Implementation Gate
 
@@ -14,7 +31,7 @@
 
 ## Session Execution Policy — 2026-08-18
 
-- [x] Keep this session Project 09-local, offline, and synthetic-only.
+- [x] Keep this session Project 09-local, offline, and synthetic-only; lightweight generation is separately allowed.
 - [x] Do not run CPU tests, package installation, model downloads, provider calls, local training, or local model inference.
 - [x] Reserve GPU-dependent model work for an explicit Kaggle or Google Colab notebook milestone.
 - [x] Use only lightweight static checks for this session and record their evidence before advancing a gate.

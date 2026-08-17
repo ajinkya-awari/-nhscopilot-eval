@@ -1,11 +1,28 @@
 # tasks/lessons.md — NHSCopilot-Eval
 
-**Review date:** 2026-08-08  
-**Status:** Local implementation lessons only. Read before every future session.
+**Review date:** 2026-08-18
+**Status:** Local implementation lessons only. Read after `STATUS.md` before every future session.
 
 **Authorization boundary:** local source creation, tests, dependencies, and synthetic evaluation are
 allowed. Do not fetch restricted sources, call remote providers, publish, deploy, or send outreach
 without separate approval.
+
+## Lesson 7 — Historical documentation can drift from implementation state
+
+**Problem:** The harness and GitHub repository were complete while older plans and evidence still
+described an earlier pre-implementation state.
+
+**Root cause:** No single canonical status document or stale-marker check connected historical
+milestones to the current handoff.
+
+**Fix:** Maintain `STATUS.md`, link it from living records, label historical evidence snapshots, and
+run the Markdown inventory/stale-marker check before each handoff.
+
+**Prevention rule:** Never infer current status from an old plan or evidence file; read `STATUS.md`,
+then `HANDOVER.md` and `tasks/todo.md`, and require a fresh evidence path for every gate.
+
+**Affected artifacts:** `STATUS.md`, `HANDOVER.md`, `tasks/todo.md`, all implementation plans, and
+dated evidence files.
 
 ## Lesson 1 — NICE content requires an AI/reuse decision
 

@@ -1,5 +1,8 @@
 # Milestone 2 static-check evidence
 
+Historical milestone snapshot. This records static contract inspection only; current handoff and
+the next required notebook gate are in `STATUS.md`.
+
 Date: 2026-08-18
 Scope: strict contracts, provenance helpers, synthetic fixtures, and test runbook
 Mode: offline PowerShell static checks

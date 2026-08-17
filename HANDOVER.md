@@ -1,6 +1,7 @@
 # HANDOVER — NHSCopilot-Eval
 
 **Updated:** 2026-08-18
+Canonical current-state summary: [`STATUS.md`](STATUS.md). Read it first for the exact next gate.
 **State:** Full local synthetic/evaluation harness and 200-row local synthetic artifact are authored; CPU test execution and all external rights/provider/benchmark-release gates remain open.
 
 ## Done
@@ -66,15 +67,20 @@ Lightweight generation result: PASS. Generated counts: guidance=100, icd10_synth
 medication_safety=50. Split counts: public_development=100, private_authoring=51,
 sealed_evaluation=49. No download, provider call, model execution, or CPU-heavy test runner was used.
 
+Documentation consistency evidence path: nhscopilot-eval/docs/evidence/documentation-consistency-check-2026-08-18.md.
+
+Documentation result: PASS. All 60 Markdown files were non-empty, canonical status links were
+present, and stale implementation-state markers were absent.
+
 GitHub publication: user-authorized push completed to
 https://github.com/ajinkya-awari/-nhscopilot-eval.git. Remote main currently points to commit
-4da1cd7 (feat: add offline NHS evaluation harness). This records repository publication only; it
+0952d75 (feat: complete offline synthetic workflow). This records repository publication only; it
 does not represent clinical, rights, model-quality, or deployment approval.
 
 ## Session Handoff
 
 1. Control plane: structurally verified with lightweight offline checks.
-2. Source boundary: complete authorized local harness authored at nhscopilot-eval/; generated datasets/results are not claimed.
+2. Source boundary: complete authorized local harness authored at nhscopilot-eval/; the local synthetic dataset is evidenced, while model-generated results are not claimed.
 3. Evidence: static, generation, boundary, and disclosure evidence recorded; CPU pytest remains unexecuted.
 4. Main risk: rights decisions, two-review adjudication, model availability, and notebook test evidence remain open.
 5. Next reviewer: user after Kaggle/Colab contract-test output and synthetic-row review, before model execution.

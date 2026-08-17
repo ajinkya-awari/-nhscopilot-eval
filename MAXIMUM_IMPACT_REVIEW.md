@@ -8,6 +8,12 @@ evaluation suite rather than a model popularity leaderboard. Ten of ten scan are
 **Portfolio isolation:** Project 09 evaluates models only. It does not train ClinicalBERT (08),
 perform protein fine-tuning, own general safety/bias research, or build a separate retrieval system.
 
+## Current implementation note — 2026-08-18
+
+The local synthetic evaluation harness is implemented and the repository is user-authorized and
+pushed to GitHub. This review remains a historical risk assessment; it is not evidence of model
+quality, clinical safety, endorsement, or deployment readiness. See `STATUS.md` for the next gate.
+
 ## Source Inspection Summary
 
 The brief was compared with NICE licensing pages, NHS England ICD-10 licensing material, MHRA
