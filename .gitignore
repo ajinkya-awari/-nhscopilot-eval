@@ -1,0 +1,19 @@
+.env
+.env.*
+!.env.example
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.venv/
+.DS_Store
+Thumbs.db
+*.log
+*.sqlite
+*.db
+
+# Local/generated evidence and model artifacts.
+nhscopilot-eval/artifacts/
+nhscopilot-eval/models/
+nhscopilot-eval/checkpoints/
+nhscopilot-eval/outputs/

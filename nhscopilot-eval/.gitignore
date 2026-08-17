@@ -1,0 +1,31 @@
+.env
+.env.*
+!.env.example
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.venv/
+build/
+dist/
+*.egg-info/
+
+# Generated and restricted artifacts are never source-controlled.
+artifacts/
+reports/*
+!reports/.gitkeep
+data/private/*
+!data/private/.gitkeep
+data/sealed/*
+!data/sealed/.gitkeep
+*.jsonl
+*.parquet
+*.sqlite
+*.db
+*.log
+*.ipynb_checkpoints/
+
+# Model files and notebook exports remain outside the local source boundary.
+models/
+checkpoints/
+outputs/

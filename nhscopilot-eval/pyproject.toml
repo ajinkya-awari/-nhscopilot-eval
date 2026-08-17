@@ -1,0 +1,38 @@
+[build-system]
+requires = ["setuptools>=69,<80"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "nhscopilot-eval"
+version = "0.1.0"
+description = "Provenance-aware research evaluation harness for Project 09"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+  "numpy==2.2.6",
+  "pandas==2.2.3",
+  "pydantic==2.11.7",
+  "pyyaml==6.0.2",
+]
+
+[project.optional-dependencies]
+analysis = [
+  "scikit-learn==1.6.1",
+]
+ui = [
+  "gradio==5.49.1",
+]
+verification = [
+  "pytest==8.3.5",
+  "ruff==0.11.8",
+]
+providers = [
+  "openai==1.82.0",
+  "anthropic==0.52.0",
+  "huggingface_hub==0.31.4",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]

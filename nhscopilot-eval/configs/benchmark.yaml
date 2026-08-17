@@ -1,0 +1,28 @@
+schema_version: "0.1"
+benchmark_id: "nhscopilot-eval-project09"
+status: "scaffold_only"
+
+# Targets are design constraints, not evidence that rows exist.
+target_rows:
+  total: 200
+  guidance: 100
+  icd10_synthetic: 50
+  medication_safety: 50
+current_rows: 0
+
+split_policy:
+  names:
+    - public_development
+    - private_authoring
+    - sealed_evaluation
+  disjoint_required: true
+  hidden_labels_in_public: false
+  tune_on_sealed_rows: false
+
+content_policy:
+  authoring_mode: "synthetic_only_until_rights_decisions"
+  external_source_access: "blocked"
+  bnf_content: "excluded_without_written_ai_and_public_distribution_permission"
+  who_nhs_icd10_tables: "not_redistributed"
+  patient_data: "prohibited"
+  fabricated_metrics: "prohibited"

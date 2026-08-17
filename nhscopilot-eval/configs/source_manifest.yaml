@@ -1,0 +1,23 @@
+schema_version: "0.1"
+manifest_id: "project09-source-manifest-scaffold"
+status: "synthetic_fallback_only"
+
+# No external source has been accessed or admitted. This record is the current fallback decision.
+external_sources: []
+
+synthetic_sources:
+  - source_id: "synthetic-authored-project09"
+    source_type: "independently_authored_synthetic"
+    version: "scaffold-2026-08-18"
+    licence_decision: "local_authorship_only_not_yet_public_release_approval"
+    ai_reuse_decision: "permitted_for_local_synthetic_development"
+    citation_anchor: "none"
+    content_hash: "not_applicable_no_rows_authored"
+    public_release: "blocked_until_disclosure_review"
+
+rights_gate:
+  nice_candidates: "not_verified_no_access_performed"
+  bnf: "excluded"
+  uk_icd10: "edition_and_licence_not_frozen"
+  restricted_source_text: "not_present"
+  fallback: "remain_synthetic_only_until_each_external_source_has_url_version_licence_hash_anchor_and_ai_decision"

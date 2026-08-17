@@ -1,0 +1,55 @@
+schema_version: "0.1"
+ledger_id: "project09-rights-ledger-scaffold"
+status: "synthetic_fallback_active"
+
+access_policy:
+  external_source_access: "blocked"
+  restricted_content_access: "not_performed"
+  public_release: "blocked_until_disclosure_review"
+  source_text_storage: "prohibited"
+
+entries:
+  - source_id: "synthetic-authored-project09"
+    source_kind: "independently_authored_synthetic"
+    source_url: null
+    version: "scaffold-2026-08-18"
+    licence_decision: "local_authorship_only"
+    ai_reuse_decision: "permitted_for_local_synthetic_development"
+    content_hash: "not_applicable_no_rows_authored"
+    citation_anchor: "none"
+    permitted_scope: "local synthetic contract and fixture development"
+    public_release: "blocked_until_disclosure_review"
+
+  - source_id: "nice-candidate-set"
+    source_kind: "external_candidate"
+    candidate_identifiers: ["NG28", "NG136", "NG12", "NG253", "CG187"]
+    source_url: null
+    version: null
+    licence_decision: "not_verified"
+    ai_reuse_decision: "not_verified"
+    content_hash: null
+    citation_anchor: null
+    permitted_scope: "none_until_live_rights_review"
+    public_release: "blocked"
+
+  - source_id: "bnf"
+    source_kind: "restricted_candidate"
+    source_url: null
+    version: null
+    licence_decision: "excluded_without_written_permission"
+    ai_reuse_decision: "not_permitted_by_default"
+    content_hash: null
+    citation_anchor: null
+    permitted_scope: "none"
+    public_release: "blocked"
+
+  - source_id: "uk-icd10"
+    source_kind: "licence_sensitive_candidate"
+    source_url: null
+    version: null
+    licence_decision: "edition_and_licence_not_frozen"
+    ai_reuse_decision: "not_verified"
+    content_hash: null
+    citation_anchor: null
+    permitted_scope: "synthetic vignette authoring only after implementation-time decision"
+    public_release: "blocked"

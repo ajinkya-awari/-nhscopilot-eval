@@ -1,0 +1,66 @@
+schema_version: "0.1"
+registry_id: "project09-model-registry-scaffold"
+status: "planning_only"
+
+availability_policy:
+  exact_snapshot_required: true
+  availability_verification_required: true
+  silent_substitution: false
+  unavailable_state: "not_run"
+  remote_execution_default: false
+  credentials: "environment_only_after_explicit_approval"
+
+scope_policy:
+  project_role: "evaluation_harness"
+  model_training: "out_of_scope"
+  gpu_notebook_role: "optional_evaluation_only"
+  notebook_platforms: ["Kaggle", "Google Colab"]
+
+models:
+  - model_key: "local_open_weight_baseline"
+    provider: "local"
+    model_id: null
+    snapshot: null
+    tokenizer_revision: null
+    status: "pending_selection"
+    availability_verified: false
+    allow_remote: false
+    cost_ceiling: 0.0
+    terms_url: null
+    selection_note: "Select and verify in a later local or notebook milestone; no model files are present."
+
+  - model_key: "openai_provider"
+    provider: "openai"
+    model_id: null
+    snapshot: null
+    tokenizer_revision: null
+    status: "not_run"
+    availability_verified: false
+    allow_remote: false
+    cost_ceiling: null
+    terms_url: null
+    selection_note: "No provider call or availability check has occurred."
+
+  - model_key: "anthropic_provider"
+    provider: "anthropic"
+    model_id: null
+    snapshot: null
+    tokenizer_revision: null
+    status: "not_run"
+    availability_verified: false
+    allow_remote: false
+    cost_ceiling: null
+    terms_url: null
+    selection_note: "No provider call or availability check has occurred."
+
+  - model_key: "huggingface_provider"
+    provider: "huggingface"
+    model_id: null
+    snapshot: null
+    tokenizer_revision: null
+    status: "not_run"
+    availability_verified: false
+    allow_remote: false
+    cost_ceiling: null
+    terms_url: null
+    selection_note: "No provider call or availability check has occurred."

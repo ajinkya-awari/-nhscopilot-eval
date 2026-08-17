@@ -1,0 +1,41 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python -m pytest *)",
+      "Bash(python -m compileall *)",
+      "Bash(python -m compileall *)",
+      "Bash(git diff *)",
+      "Bash(git status *)",
+      "Bash(rg *)"
+    ],
+    "deny": [
+      "Read(.env)",
+      "Read(.env.*)",
+      "Bash(rm -rf *)",
+      "Bash(git push --force *)",
+      "Bash(curl *provider*)",
+      "Bash(curl *openai*)",
+      "Bash(curl *huggingface*)",
+      "Bash(curl *nice.org.uk*)"
+    ]
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash(git commit*)",
+        "hooks": [
+          { "type": "command", "command": ".claude/hooks/pre-commit.sh" }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          { "type": "command", "command": ".claude/hooks/lint-on-save.sh" }
+        ]
+      }
+    ]
+  },
+  "autoMemoryEnabled": true
+}

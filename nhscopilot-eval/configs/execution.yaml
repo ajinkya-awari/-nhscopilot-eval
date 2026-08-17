@@ -1,0 +1,34 @@
+schema_version: "0.1"
+execution_policy: "offline_first"
+
+current_session:
+  local_cpu_tests: "disabled_by_user"
+  local_cpu_heavy_work: "disabled"
+  local_model_downloads: "disabled"
+  local_model_inference: "disabled"
+  package_installation: "disabled"
+  provider_calls: "disabled"
+  network_access: "disabled"
+  allowed_checks:
+    - "file_existence"
+    - "json_parse"
+    - "static_boundary_scan"
+    - "forbidden_content_scan"
+
+remote_gpu_notebook:
+  status: "deferred"
+  platforms:
+    - "Kaggle"
+    - "Google Colab"
+  required_opt_in: true
+  synthetic_inputs_only: true
+  restricted_source_access: false
+  hidden_labels_public: false
+  raw_outputs_public: false
+  unavailable_models: "not_run"
+  notebook_artifact: "not_created_in_milestone_1"
+
+remote_providers:
+  allow_remote: false
+  cost_ceiling: "not_set"
+  credentials: "environment_only_when_explicitly_approved"
