@@ -74,7 +74,7 @@ present, and stale implementation-state markers were absent.
 
 GitHub publication: user-authorized push completed to
 https://github.com/ajinkya-awari/-nhscopilot-eval.git. Remote main currently points to commit
-3aa486e (docs: synchronize project status and handoff). This records repository publication only; it
+the latest documentation commit. This records repository publication only; it
 does not represent clinical, rights, model-quality, or deployment approval.
 
 ## Session Handoff

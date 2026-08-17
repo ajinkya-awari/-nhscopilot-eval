@@ -2,7 +2,7 @@
 
 **As of:** 2026-08-18
 **Repository:** [ajinkya-awari/-nhscopilot-eval](https://github.com/ajinkya-awari/-nhscopilot-eval)
-**Remote commit:** `3aa486e docs: synchronize project status and handoff`
+**Remote branch:** `main` is verified on GitHub after the latest documentation push.
 **Branch state:** `main` is clean and synchronized with `origin/main`.
 
 This is the canonical session handoff. `HANDOVER.md` contains the detailed narrative; `tasks/todo.md`
