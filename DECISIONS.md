@@ -41,6 +41,6 @@ remain delegated to Kaggle/Colab or an explicitly approved environment.
 
 ## D-008: Repository publication versus benchmark release
 
-The user explicitly authorized pushing the source repository to GitHub; `0952d75` is the current
+The user explicitly authorized pushing the source repository to GitHub; `3aa486e` is the current
 remote tip. This does not authorize benchmark publication, provider execution, deployment, outreach,
 rights-sensitive access, clinical claims, or regulatory claims.
