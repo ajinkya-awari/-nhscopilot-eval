@@ -56,6 +56,11 @@ Full local static evidence path: nhscopilot-eval/docs/evidence/full-local-static
 
 Full local static result: PASS. Python/CPU/network execution: NOT USED.
 
+GitHub publication: user-authorized push completed to
+https://github.com/ajinkya-awari/-nhscopilot-eval.git. Remote main currently points to commit
+4da1cd7 (feat: add offline NHS evaluation harness). This records repository publication only; it
+does not represent clinical, rights, model-quality, or deployment approval.
+
 ## Session Handoff
 
 1. Control plane: structurally verified with lightweight offline checks.
