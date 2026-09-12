@@ -1,0 +1,9 @@
+cff-version: 1.2.0
+message: "If you use this software after release, cite this repository."
+type: software
+title: NHSCopilot-Eval
+authors:
+  - family-names: Awari
+    given-names: Ajinkya
+repository-code: https://github.com/ajinkya-awari/-nhscopilot-eval
+version: 0.1.0

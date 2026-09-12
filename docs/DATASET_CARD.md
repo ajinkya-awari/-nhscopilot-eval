@@ -1,0 +1,5 @@
+﻿# Public fixture card
+
+This copy contains small synthetic public contract fixtures and an offline example. It contains no released benchmark dataset, private or sealed split, hidden answer key, patient record, restricted guideline passage, model response, or clinical label. The original development tree can generate 200 toy rows for local review, but that generator is excluded because it reconstructs the private and sealed toy labels. Earlier public repository history included that deterministic generator; those toy labels must be treated as exposed and cannot support a held-out benchmark claim. No independent clinical review or model evaluation has occurred.
+
+The fixtures exercise schema rejection, prompt-as-data boundaries, redaction patterns, and unavailable-provider states. They are software tests; they do not measure medical correctness or clinical safety. Any future external source requires a documented URL, version, license/reuse decision, content hash, and citation anchor before admission.

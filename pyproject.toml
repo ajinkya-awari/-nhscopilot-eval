@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=69,<80"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "nhscopilot-eval"
+version = "0.1.0"
+description = "Synthetic-only evaluation contracts and offline fixtures"
+license = "MIT"
+readme = "README.md"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+  "pydantic==2.11.7",
+  "pyyaml==6.0.2",
+]
+
+[project.optional-dependencies]
+ui = [
+  "gradio==5.49.1",
+]
+verification = [
+  "pytest==8.3.5",
+  "ruff==0.11.8",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]

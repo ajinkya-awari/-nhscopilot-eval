@@ -6,14 +6,26 @@ __pycache__/
 .pytest_cache/
 .ruff_cache/
 .venv/
-.DS_Store
-Thumbs.db
-*.log
+build/
+dist/
+*.egg-info/
+
+# Generated and restricted artifacts are never source-controlled.
+artifacts/
+reports/*
+!reports/.gitkeep
+data/private/*
+!data/private/.gitkeep
+data/sealed/*
+!data/sealed/.gitkeep
+*.jsonl
+*.parquet
 *.sqlite
 *.db
+*.log
+*.ipynb_checkpoints/
 
-# Local/generated evidence and model artifacts.
-nhscopilot-eval/artifacts/
-nhscopilot-eval/models/
-nhscopilot-eval/checkpoints/
-nhscopilot-eval/outputs/
+# Model files and notebook exports remain outside the local source boundary.
+models/
+checkpoints/
+outputs/
