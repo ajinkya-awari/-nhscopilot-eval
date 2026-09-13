@@ -41,7 +41,11 @@ def valid_row_data() -> dict[str, object]:
         "row_id": make_row_id(category, prompt, source_id, split),
         "category": category,
         "prompt": prompt,
-        "answer_key": {"facts": ["synthetic fact one"], "abstention": False},
+        "answer_key": {
+            "facts": ["synthetic fact one"],
+            "requires_source_alignment": True,
+            "abstention_allowed": False,
+        },
         "rubric_version": "guidance-v1",
         "source_id": source_id,
         "source_version": "fixture-2026-08-18",
@@ -75,6 +79,36 @@ def test_benchmark_row_accepts_a_deterministic_identity() -> None:
 
     assert row.row_id == make_row_id(row.category, row.prompt, row.source_id, row.split)
     assert row.content_hash == make_content_hash(row.prompt)
+
+
+def test_benchmark_row_rejects_conflicting_abstention_metadata() -> None:
+    data = valid_row_data()
+    data["answer_key"] = {
+        "facts": ["synthetic fact one"],
+        "requires_source_alignment": True,
+        "abstention_allowed": True,
+    }
+
+    with pytest.raises(ValidationError, match="requires_abstention"):
+        BenchmarkRow.model_validate(data)
+
+
+@pytest.mark.parametrize("category", ["guidance", "icd10_synthetic", "medication_safety"])
+def test_public_contract_rejects_malformed_category_answer_key(category: str) -> None:
+    data = valid_row_data()
+    data["category"] = category
+    data["prompt"] = f"Synthetic public {category} shape fixture."
+    data["row_id"] = make_row_id(category, data["prompt"], data["source_id"], data["split"])
+    data["content_hash"] = make_content_hash(data["prompt"])
+    if category == "guidance":
+        data["answer_key"] = {"facts": "not a list", "requires_source_alignment": True, "abstention_allowed": False}
+    elif category == "icd10_synthetic":
+        data["answer_key"] = {"codes": ["S01.0"], "primary_code": "UNSUPPLIED", "insufficient_information": False}
+    else:
+        data["answer_key"] = {"outcome": ["safe"], "severity": "low", "requires_abstention": False}
+
+    with pytest.raises(ValidationError, match="answer_key"):
+        BenchmarkRow.model_validate(data)
 
 
 def test_benchmark_row_rejects_an_unknown_field() -> None:

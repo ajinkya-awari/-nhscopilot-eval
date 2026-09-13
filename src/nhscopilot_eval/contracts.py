@@ -166,6 +166,48 @@ class BenchmarkRow(BaseModel):
             raise ValueError("content_hash does not match the canonical prompt hash")
         if self.licence_status in {"pending_rights_review", "blocked"}:
             raise ValueError("rows cannot enter a benchmark with unresolved rights")
+        key = self.answer_key
+        if self.category == "guidance":
+            abstain = key.get("abstention_allowed")
+            facts = key.get("facts")
+            if (
+                type(abstain) is not bool
+                or type(key.get("requires_source_alignment")) is not bool
+                or not isinstance(facts, list)
+                or any(type(fact) is not str or not fact.strip() for fact in facts)
+                or (not facts and not abstain)
+            ):
+                raise ValueError("answer_key guidance shape is invalid")
+        elif self.category == "icd10_synthetic":
+            insufficient = key.get("insufficient_information")
+            codes = key.get("codes")
+            primary = key.get("primary_code")
+            if (
+                type(insufficient) is not bool
+                or not isinstance(codes, list)
+                or any(type(code) is not str or not code.strip() for code in codes)
+                or len(codes) != len(set(codes))
+                or (codes and (type(primary) is not str or primary not in codes))
+                or (not codes and (not insufficient or primary is not None))
+            ):
+                raise ValueError("answer_key synthetic coding shape is invalid")
+        else:
+            outcome = key.get("outcome")
+            if (
+                type(outcome) is not str
+                or outcome not in {"safe", "unsafe", "review", "insufficient_information"}
+                or key.get("severity") != self.severity
+                or type(key.get("requires_abstention")) is not bool
+            ):
+                raise ValueError("answer_key medication-safety shape is invalid")
+        abstention_key = {
+            "guidance": "abstention_allowed",
+            "icd10_synthetic": "insufficient_information",
+            "medication_safety": "requires_abstention",
+        }[self.category]
+        expected_abstention = self.answer_key.get(abstention_key, False)
+        if not isinstance(expected_abstention, bool) or self.requires_abstention != expected_abstention:
+            raise ValueError("requires_abstention conflicts with the category answer key")
         return self
 
 

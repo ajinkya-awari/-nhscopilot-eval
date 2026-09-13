@@ -4,9 +4,9 @@ Synthetic-only evaluation contracts and offline fixtures for inspecting language
 
 This research harness is intended for evaluation engineers and reviewers. It is **not** an NHS service, clinical decision tool, patient-facing application, or validated medical benchmark. Its fixtures do not establish clinical safety, regulatory compliance, provider quality, or deployment readiness. No institutional endorsement is claimed.
 
-## What is in this public staging copy
+## What this public repository contains
 
-The local source contains strict Pydantic request, response, source, row, and public-bundle contracts; response-state handling; redaction helpers; deterministic hashing and replay records; split checks; bounded fixture scoring; numeric aggregation; and a frozen aggregate catalogue. The public copy includes the offline fixture provider and contract tests. The synthetic row generator is excluded because its source code reconstructs the toy answer keys for private and sealed splits. Earlier public repository history included that generator, so those deterministic toy labels are exposed and cannot serve as held-out benchmark data. No generated dataset, private/sealed labels, provider responses, model files, or benchmark results are included in this export.
+This repository contains strict Pydantic request, response, source, row, and public-bundle contracts; response-state handling; redaction helpers; deterministic hashing and replay records; split checks; bounded fixture scoring; numeric aggregation; and a frozen aggregate catalogue. It includes an offline fixture provider and contract tests. The synthetic row generator is excluded because its source code reconstructs the toy answer keys for private and sealed splits. Earlier public repository history included that generator, so those deterministic toy labels are exposed and cannot serve as held-out benchmark data. No generated dataset, private/sealed labels, provider responses, model files, or benchmark results are included in this export.
 
 ```mermaid
 flowchart LR
@@ -31,26 +31,30 @@ python -m pytest -q
 python examples/offline_fixture.py
 ```
 
-The install command is documentation for a later user-controlled environment; this audit installed nothing. The verification extra pins pytest. The local audit used already-installed, different versions; see the status below. The optional catalogue UI requires `python -m pip install -e ".[ui]"` in a separately approved environment. No UI server is launched by the example.
+Use an isolated Python environment for installation. The verification extra pins pytest; the local results below used already-installed, different versions. The optional catalogue UI requires `python -m pip install -e ".[ui]"`. The example does not launch a UI server.
 
 ## Synthetic-only example
 
 `examples/offline_fixture.py` constructs a synthetic request, uses `LocalFixtureProvider`, and prints a redacted status/hash summary. It performs no network or model call and writes no private output. Run it with `python examples/offline_fixture.py` after installation. For the uninstalled local export, use `$env:PYTHONPATH = (Resolve-Path -LiteralPath 'src').Path; python examples/offline_fixture.py` from PowerShell. The source suite's 200-row generator is intentionally absent from this public copy; the example demonstrates contracts and local fixture behavior, not a benchmark result.
 
-## Verified status on 2026-09-12
+## Verified local status on 2026-09-13
 
 | Lane | State | Evidence |
 | --- | --- | --- |
 | Public core implementation | Implemented, synthetic-only | Curated source and example in this directory |
-| Original Project 09 local suite | Locally tested | `python -m pytest -q`: **77 passed in 4.60s**, exit 0; `python -m compileall -q src scripts tests`: exit 0 |
+| Latest original Project 09 suite | Locally tested after the row-contract and candidate-structure fixes | `python -m pytest -q`: **97 passed in 5.47s**, exit 0; source compile: exit 0 |
+| Current public code export | Locally tested after the stricter row-contract update | `python -m pytest -q`: **33 passed in 0.73s**, exit 0; compile and offline example: exit 0 |
+| Private Kaggle public-core snapshot | Historically tested on Python 3.12.13, non-pinned packages | Earlier 39-file upload passed **30 tests in 1.78s**, exit 0; later code edits are not covered by that run |
+| Earlier 2026-09-13 source snapshot | Historical local verification | Source: **77 passed in 4.60s**, exit 0; public export: **29 passed in 1.31s**, exit 0; commit `4bdfab9` |
 | Historical local test record | Historical only | 2026-08-19: 37 passed under non-target versions; superseded for local diagnostics by the 2026-09-12 result |
-| Public export suite and example | Locally tested | `python -m pytest -q`: **29 passed in 1.31s**, exit 0; compile check: exit 0; offline example with `PYTHONPATH=src`: exit 0, status `complete` |
-| Python 3.12 and pinned dependencies | Not verified in this session | Local diagnostics used Python 3.11.9, pytest 9.0.3, Pydantic 2.12.5, NumPy 2.4.6, pandas 2.3.3, PyYAML 6.0.1 |
+| Offline example | Verified with this export | Example with `PYTHONPATH=src`: exit 0, status `complete` |
+| Exact pinned dependencies and complete source suite on Python 3.12 | Not verified | Local diagnostics used Python 3.11.9; the separate Kaggle public-core run used Python 3.12.13 with non-pinned packages |
 | Provider and model performance | `not_run` | No provider call, model download, inference, or GPU execution |
 | Clinical-data evaluation | Blocked | No patient, NHS, restricted guideline, or clinical dataset was used |
 | Public benchmark release | Blocked | MIT code license is selected; rights/review/evidence gates remain open |
 
 The numbers above count software tests, not clinical cases, model outcomes, or benchmark quality.
+The Git release tree includes only the 39 curated files. Local test runs may create ignored Python and pytest caches; these are not part of the repository.
 
 ## Privacy, security, and limits
 
@@ -62,7 +66,7 @@ Fixture scorers use bounded lexical rules. They do not measure medical correctne
 
 Run the commands above from the export root and record Python/package versions, exact command, exit code, test count, and date. Hashes and row identities use canonical JSON; replay records retain hashes rather than raw payloads. The public package carries no private or sealed dataset, so it cannot reproduce a hidden-split evaluation.
 
-A future Kaggle or Colab run is **gated**. It would require a separate, reviewed synthetic-only upload manifest and explicit authorization, then a fresh Python 3.12/pinned-dependency test record. Provider calls, model downloads, rights-sensitive source access, clinical data, benchmark publication, and deployment remain outside this source-only release. The rights holder authorized a push of this reviewed code export to the existing repository; no benchmark result is being published.
+A further Kaggle or Colab run is **gated**. The private Kaggle public-core snapshot above verified only its uploaded bytes; another run would require a separate, reviewed synthetic-only upload manifest and explicit authorization. Provider calls, model downloads, rights-sensitive source access, clinical data, benchmark publication, and deployment remain outside this source-only release. This repository publishes code and synthetic fixtures, not benchmark results.
 
 ## Citation, attribution, and roadmap
 

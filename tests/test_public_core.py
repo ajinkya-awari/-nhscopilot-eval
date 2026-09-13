@@ -52,7 +52,11 @@ def test_scoring_rejects_response_for_different_synthetic_row() -> None:
         row_id=make_row_id("guidance", prompt, "synthetic-public", "public_development"),
         category="guidance",
         prompt=prompt,
-        answer_key={"facts": ["made_up_fact"]},
+        answer_key={
+            "facts": ["made_up_fact"],
+            "requires_source_alignment": True,
+            "abstention_allowed": False,
+        },
         rubric_version="guidance-v1",
         source_id="synthetic-public",
         source_version="fixture-v1",
