@@ -1,8 +1,14 @@
 # NHSCopilot-Eval
 
+<div align="center">
+
+<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=120&section=header&text=NHSCopilot-Eval&fontSize=38&fontColor=fff&animation=twinkling&fontAlignY=45&desc=Safety-first%20synthetic%20evaluation%20contracts%20for%20healthcare-oriented%20LLM%20behavior&descAlignY=70&descAlign=50&descSize=13" alt="Animated banner reading: NHSCopilot-Eval — safety-first synthetic evaluation contracts for healthcare-oriented LLM behavior" width="100%"/>
+
 ![Python 3.12](https://img.shields.io/badge/python-3.12-blue)
 ![License: MIT](https://img.shields.io/badge/license-MIT-green)
 ![Tests: 33 passed](https://img.shields.io/badge/tests-33%20passed-brightgreen)
+
+</div>
 
 A safety-first, synthetic-only evaluation framework for checking how language models handle healthcare-oriented prompts — without using any real clinical or NHS data.
 
@@ -153,3 +159,9 @@ Gated until separately approved and evidenced:
 ## Citation And License
 
 Use [CITATION.cff](CITATION.cff) to cite this software. The code is licensed under [MIT](LICENSE). [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) lists dependency notices. The MIT license covers Project 09 code only — it does not authorize use or redistribution of external clinical content.
+
+<div align="center">
+
+<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=80&section=footer" alt="Decorative footer banner" width="100%"/>
+
+</div>
