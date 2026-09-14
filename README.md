@@ -1,75 +1,120 @@
 # NHSCopilot-Eval
 
-Synthetic-only evaluation contracts and offline fixtures for inspecting language-model response handling, replay, scoring, and disclosure boundaries.
+Synthetic-only evaluation contracts and offline fixtures for checking language-model response handling, replay, scoring, and release boundaries in a healthcare-oriented research setting.
 
-This research harness is intended for evaluation engineers and reviewers. It is **not** an NHS service, clinical decision tool, patient-facing application, or validated medical benchmark. Its fixtures do not establish clinical safety, regulatory compliance, provider quality, or deployment readiness. No institutional endorsement is claimed.
+This repository is **not** an NHS service, clinical decision tool, validated benchmark, deployment artifact, or provider leaderboard. It does not establish clinical safety, regulatory compliance, NHS/NICE/MHRA/WHO endorsement, real-provider performance, or deployment readiness.
 
-## What this public repository contains
+## Verified Status
 
-This repository contains strict Pydantic request, response, source, row, and public-bundle contracts; response-state handling; redaction helpers; deterministic hashing and replay records; split checks; bounded fixture scoring; numeric aggregation; and a frozen aggregate catalogue. It includes an offline fixture provider and contract tests. The synthetic row generator is excluded because its source code reconstructs the toy answer keys for private and sealed splits. Earlier public repository history included that generator, so those deterministic toy labels are exposed and cannot serve as held-out benchmark data. No generated dataset, private/sealed labels, provider responses, model files, or benchmark results are included in this export.
+Project 09 is **COMPLETE WITH LIMITATIONS** for the public synthetic-contract scope. Research execution is **NOT RELEASED**.
+
+| Scope | Status | Evidence |
+| --- | --- | --- |
+| Synthetic public-contract scope | 100% complete | Current 39-file public package passed local public tests and private Kaggle CPU validation |
+| Overall research readiness | 64% editorial | Remaining research gates are listed below |
+| Local source suite | Passed | `python -m pytest -q`: **97 passed in 2.43s**, exit 0, run from the private source boundary on 2026-09-14 |
+| Current public package on Kaggle | Passed | Private Kaggle CPU version 3: **33 passed in 1.92s**, compile exit 0, offline fixture exit 0, Python 3.12.13 |
+| Provider/model evaluation | Not run | Providers, model execution, model training, downloads, and GPU work stayed disabled |
+| Benchmark release | Not released | Replacement rows, independent review, frozen manifests, and publication review remain open |
+
+The Kaggle evidence path in the private project records is `docs/evidence/kaggle-public-head-internet-on-2026-09-14.md`. The public repository includes only public-safe source, tests, synthetic fixtures, configuration, license, notices, and reproducibility instructions.
+
+## Architecture
 
 ```mermaid
-flowchart LR
-    A[Public synthetic fixture] --> B[Strict contracts]
-    B --> C[Offline fixture or not_run]
-    C --> D[Status-aware scoring]
-    D --> E[Aggregate and replay checks]
-    E --> F[Release gate]
-    F -->|Current state: blocked| G[No benchmark publication]
+flowchart TD
+    A[Synthetic public fixture] --> B[Strict Pydantic contracts]
+    B --> C[Prompt-as-data and schema checks]
+    C --> D[Offline fixture provider]
+    D --> E[Status-aware scoring]
+    E --> F[Replay and aggregate records]
+    F --> G[Disclosure gate]
+    G --> H[Public code release]
+    G --> I[Blocked research gates]
+    I --> J[Provider/model evaluation]
+    I --> K[Benchmark publication]
+    I --> L[Clinical/NHS/regulatory review]
 ```
 
-The diagram shows the offline evaluation flow. `not_run` records are distinct from completed, refused, abstained, malformed, timed-out, and provider-error responses. The release gate rejects `available` aggregate results until an evidence-backed release path is implemented and reviewed.
+The public flow keeps `complete`, `refusal`, `abstention`, `malformed`, `timeout`, `provider_error`, and `not_run` states distinct. `not_run` is a first-class state and is not silently converted into a score.
 
-## Install and verify
+## What Is Included
 
-Use Python 3.12 for the declared target environment. From this directory:
+- Strict contracts for requests, responses, rows, source manifests, and public bundles.
+- Synthetic fixture tests, including malformed-response rejection and prompt-injection-as-data boundaries.
+- Offline fixture provider behavior with no live provider call.
+- Redaction helpers, deterministic hashes, replay records, split checks, scoring, reporting, and disclosure checks.
+- Public-safe configuration and a target-runtime runbook.
+- MIT license, citation metadata, and third-party notices.
+
+The deterministic row generator and private/sealed toy labels are intentionally excluded. Earlier public history exposed those toy labels, so they must not be treated as held-out benchmark data.
+
+## Installation
+
+Use Python 3.12 for the declared target environment.
 
 ```powershell
 python -m pip install -e ".[verification]"
+```
+
+No dependency installation was performed during this packaging pass. Use an isolated environment before installing optional extras.
+
+## Local Verification
+
+From the public export root:
+
+```powershell
 python -m compileall -q src scripts tests examples
 python -m pytest -q
 python examples/offline_fixture.py
 ```
 
-Use an isolated Python environment for installation. The verification extra pins pytest; the local results below used already-installed, different versions. The optional catalogue UI requires `python -m pip install -e ".[ui]"`. The example does not launch a UI server.
+For an uninstalled checkout, run:
 
-## Synthetic-only example
+```powershell
+$env:PYTHONPATH = (Resolve-Path -LiteralPath 'src').Path
+python examples/offline_fixture.py
+```
 
-`examples/offline_fixture.py` constructs a synthetic request, uses `LocalFixtureProvider`, and prints a redacted status/hash summary. It performs no network or model call and writes no private output. Run it with `python examples/offline_fixture.py` after installation. For the uninstalled local export, use `$env:PYTHONPATH = (Resolve-Path -LiteralPath 'src').Path; python examples/offline_fixture.py` from PowerShell. The source suite's 200-row generator is intentionally absent from this public copy; the example demonstrates contracts and local fixture behavior, not a benchmark result.
+The current source-boundary local suite passed **97 tests** on 2026-09-14. The public Kaggle contract runner restored the public package, verified 39 embedded file hashes, compiled the package, ran the public tests, and completed the offline fixture.
 
-## Verified local status on 2026-09-13
+## Synthetic-Only Example
 
-| Lane | State | Evidence |
-| --- | --- | --- |
-| Public core implementation | Implemented, synthetic-only | Curated source and example in this directory |
-| Latest original Project 09 suite | Locally tested after the row-contract and candidate-structure fixes | `python -m pytest -q`: **97 passed in 5.47s**, exit 0; source compile: exit 0 |
-| Current public code export | Locally tested after the stricter row-contract update | `python -m pytest -q`: **33 passed in 0.73s**, exit 0; compile and offline example: exit 0 |
-| Private Kaggle public-core snapshot | Historically tested on Python 3.12.13, non-pinned packages | Earlier 39-file upload passed **30 tests in 1.78s**, exit 0; later code edits are not covered by that run |
-| Earlier 2026-09-13 source snapshot | Historical local verification | Source: **77 passed in 4.60s**, exit 0; public export: **29 passed in 1.31s**, exit 0; commit `4bdfab9` |
-| Historical local test record | Historical only | 2026-08-19: 37 passed under non-target versions; superseded for local diagnostics by the 2026-09-12 result |
-| Offline example | Verified with this export | Example with `PYTHONPATH=src`: exit 0, status `complete` |
-| Exact pinned dependencies and complete source suite on Python 3.12 | Not verified | Local diagnostics used Python 3.11.9; the separate Kaggle public-core run used Python 3.12.13 with non-pinned packages |
-| Provider and model performance | `not_run` | No provider call, model download, inference, or GPU execution |
-| Clinical-data evaluation | Blocked | No patient, NHS, restricted guideline, or clinical dataset was used |
-| Public benchmark release | Blocked | MIT code license is selected; rights/review/evidence gates remain open |
+`examples/offline_fixture.py` creates a synthetic request, calls the local fixture provider, and prints only hashes and status metadata. It writes no private output and performs no network call.
 
-The numbers above count software tests, not clinical cases, model outcomes, or benchmark quality.
-The Git release tree includes only the 39 curated files. Local test runs may create ignored Python and pytest caches; these are not part of the repository.
+```powershell
+python examples/offline_fixture.py
+```
 
-## Privacy, security, and limits
+Expected mode: `synthetic_offline_fixture`.
 
-Inputs must be independently authored synthetic text. Do not place patient identifiers, clinical records, restricted guideline passages, credentials, or provider output in this project. The redaction helper covers common fixture patterns; it is not a general-purpose PHI detector. The public bundle contract rejects available metrics without a verified release-evidence path, and score/output CLI paths are confined to `data/private/`. The source contains an SDK-neutral remote adapter for future controlled work; current configuration disables providers. The adapter now checks session permission, a numeric policy budget, and a request's synthetic-input declaration before transport. That declaration is not independent proof of provenance. Timeout cancellation and actual cost enforcement remain unresolved before any remote execution.
+## Privacy And Security Boundaries
 
-Fixture scorers use bounded lexical rules. They do not measure medical correctness, clinical safety, source validity, or real provider performance. Private/sealed toy labels in the original development tree have not been independently reviewed or frozen. No result from this public copy should be interpreted as a clinical claim.
+Do not place patient identifiers, clinical records, raw medical text, restricted guideline passages, credentials, provider outputs, hidden labels, or private manifests in this repository. The redaction helper covers common fixture patterns; it is not a general-purpose PHI detector.
 
-## Reproducibility and future runtime
+The SDK-neutral provider adapter remains guarded for future controlled work. Current configuration disables providers. Any future remote call requires a separate synthetic-input declaration, policy budget, session permission, and fresh approval.
 
-Run the commands above from the export root and record Python/package versions, exact command, exit code, test count, and date. Hashes and row identities use canonical JSON; replay records retain hashes rather than raw payloads. The public package carries no private or sealed dataset, so it cannot reproduce a hidden-split evaluation.
+## Limitations
 
-A further Kaggle or Colab run is **gated**. The private Kaggle public-core snapshot above verified only its uploaded bytes; another run would require a separate, reviewed synthetic-only upload manifest and explicit authorization. Provider calls, model downloads, rights-sensitive source access, clinical data, benchmark publication, and deployment remain outside this source-only release. This repository publishes code and synthetic fixtures, not benchmark results.
+- Fixture scorers are bounded software checks, not medical correctness measures.
+- The package does not prove clinical safety, regulatory compliance, NHS endorsement, model quality, or deployment readiness.
+- Exact pinned dependency behavior for the full private source suite remains unverified.
+- Replacement synthetic rows need independent review and adjudication before any benchmark claim.
+- No human evaluation, provider/model evaluation, clinical-data evaluation, or benchmark publication exists.
 
-## Citation, attribution, and roadmap
+## Gated Future Work
 
-Use [CITATION.cff](CITATION.cff) to cite this software. The code is licensed under [MIT](LICENSE). [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) lists runtime dependencies, which retain their own licenses; no third-party source or medical source text is vendored. [DATASET_CARD.md](docs/DATASET_CARD.md) explains the synthetic fixture boundary. The MIT license does not authorize use or redistribution of external clinical content.
+Future work remains blocked until separately approved and evidenced:
 
-Next: validate the public package under target pins; replace and independently review the exposed toy evaluation rows; design evidence-bound aggregate release; harden remote transport cancellation and actual cost enforcement; then seek separate approvals for any target notebook or provider work. Until those gates close, this is research code, not a released benchmark.
+- full 97-test source-suite target-environment evidence;
+- pinned dependency lock and target-runtime verification;
+- replacement-row review and adjudication;
+- frozen public/private/sealed manifests;
+- provider/model evaluation with budget and availability metadata;
+- benchmark publication review;
+- deployment review;
+- clinical/NHS/regulatory review.
+
+## Citation And License
+
+Use [CITATION.cff](CITATION.cff) to cite this software. The code is licensed under [MIT](LICENSE). [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) lists dependency notices. The MIT license covers Project 09 code only; it does not authorize use or redistribution of external clinical content.

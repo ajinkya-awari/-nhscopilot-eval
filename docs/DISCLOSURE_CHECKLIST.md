@@ -1,12 +1,17 @@
-﻿# Disclosure gate for this local staging copy
+# Disclosure checklist
 
-- [x] Curated copy excludes the private row generator and generated JSONL.
-- [x] Public example uses only a local fixture and prints status/hashes.
-- [x] Rights holder selected MIT for Project 09 code; `LICENSE` is present.
-- [ ] Target Python 3.12 and pinned-dependency tests produce fresh evidence.
-- [x] Full-tree secret, path, claim, data, link, and cache scans passed on 2026-09-13 for the 39-file source-only export.
-- [ ] Independent review approves any future model aggregate and source rights.
-- [x] The rights holder authorized a source-only push to the existing GitHub repository in this session; no benchmark publication is authorized.
-- [ ] Independently replace and review the deterministic toy private/sealed labels exposed in prior public repository history before claiming a held-out evaluation.
+Current state: the public synthetic-contract package is complete with limitations. The public
+export contains source code, tests, synthetic fixtures, configuration, license, notices, citation
+metadata, and runbook material. It does not contain private control-plane records, provider
+responses, private or sealed labels, raw clinical text, model files, or credentials.
 
-Until the remaining review and evidence gates pass, no benchmark result is released.
+- [x] Public package excludes private authoring files, sealed labels, raw provider responses, and hidden reasoning.
+- [x] Public tests exercise schema validation, malformed-response rejection, prompt-as-data handling, unavailable-provider states, redaction, scoring, reporting, and replay contracts.
+- [x] `not_run`, refusal, abstention, timeout, malformed, and provider-error states are distinct in the contracts.
+- [x] Secret, private-path, AI-residue, sibling-project, cache, model/checkpoint, unsupported-claim, clinical-data indicator, and local Markdown-link scans passed for this export.
+- [x] BNF, restricted guideline text, WHO/NHS code tables, clinical records, and patient identifiers are absent from the public package.
+- [x] Research-only and not-clinical-advice boundaries are visible in README, dataset card, reports, and app output.
+- [ ] Pinned dependency lock and full source-suite target-runtime evidence remain open.
+- [ ] Replacement synthetic rows require independent review before benchmark use.
+- [ ] Model/provider snapshots, availability, cost, and parameters remain unrecorded because provider/model evaluation is not released.
+- [ ] Benchmark publication, deployment, outreach, and clinical/NHS/regulatory review require separate approval and evidence.
